@@ -1,0 +1,35 @@
+<h1>Editar Medicamento</h1>
+
+<%= form_with(model: @medication, local: true) do |form| %>
+  <% if @medication.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@medication.errors.count, "erro") %> proibiu que este medicamento fosse salvo:</h2>
+      <ul>
+        <% @medication.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, "Nome do Medicamento" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :dosage, "Dosagem" %>
+    <%= form.text_field :dosage %>
+  </div>
+
+  <div>
+    <%= form.label :frequency, "Frequência" %>
+    <%= form.text_field :frequency %>
+  </div>
+
+  <div>
+    <%= form.submit 'Atualizar Medicamento' %>
+  </div>
+<% end %>
+
+<%= link_to 'Voltar', medications_path %>

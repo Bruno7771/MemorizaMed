@@ -1,0 +1,38 @@
+<h1>Meus Medicamentos</h1>
+
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<% if flash[:alert] %>
+  <p class="alert"><%= flash[:alert] %></p>
+<% end %>
+
+<%= link_to 'Adicionar Medicamento', new_medication_path, class: 'btn btn-primary' %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Dosagem</th>
+      <th>Frequência</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @medications.each do |medication| %>
+      <tr>
+        <td><%= medication.name %></td>
+        <td><%= medication.dosage %></td>
+        <td><%= medication.frequency %></td>
+        <td>
+          <%= link_to 'Editar', edit_medication_path(medication), class: 'btn btn-secondary' %>
+          <%= link_to 'Remover', medication_path(medication), class: 'btn btn-danger',  data: {turbo_method: :delete}
+         %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Voltar', root_path, class: 'btn btn-secondary' %>
